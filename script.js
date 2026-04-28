@@ -1,46 +1,67 @@
-new Typed("#typed", {
-  strings: ["FPGA Developer","VLSI Enthusiast","Embedded Engineer"],
-  typeSpeed:50,
-  backSpeed:30,
-  loop:true
+// Smooth scrolling
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href"))
+            .scrollIntoView({ behavior: "smooth" });
+    });
 });
 
-AOS.init();
 
-function showMessage(e){
-  document.getElementById("message").innerText="Thanks for visiting 🚀";
+// Active navbar highlight
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".navbar a");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+        }
+    });
+});
+
+
+// Reveal animation on scroll
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".section").forEach(sec => {
+    sec.classList.add("hidden");
+    observer.observe(sec);
+});
+
+
+// Button interaction (example)
+function showMessage() {
+    alert("Thanks for visiting my portfolio 🚀");
 }
 
-function openModal(type){
-  let text=document.getElementById("modalText");
-  if(type==="fir")
-    text.innerText="Adaptive FIR filter implemented on FPGA.";
-  else
-    text.innerText="AES encryption with UART communication.";
-  document.getElementById("modal").style.display="block";
+
+// Lightweight typing effect
+const text = "FPGA | VLSI | SoC Design Engineer";
+let i = 0;
+
+function typeEffect() {
+    if (i < text.length) {
+        document.querySelector(".hero h3").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+    }
 }
 
-function closeModal(){
-  document.getElementById("modal").style.display="none";
-}
-
-function validateForm(){
-  let n=document.getElementById("name").value;
-  let e=document.getElementById("email").value;
-  if(n===""||e===""){ alert("Fill all fields"); return false;}
-  alert("Submitted!");
-  return true;
-}
-
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-}
-
-window.onscroll=function(){
-  document.getElementById("topBtn").style.display=
-    window.scrollY>200?"block":"none";
-};
-
-function scrollTopPage(){
-  window.scrollTo({top:0,behavior:"smooth"});
-}
+window.onload = typeEffect;

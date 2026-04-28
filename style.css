@@ -1,62 +1,58 @@
 body {
-  font-family: Arial;
-  background: linear-gradient(120deg,#1e3c72,#2a5298);
-  color: white;
-  padding-top: 70px;
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
 }
 
-.hero { margin-top: 40px; }
+/* Navbar */
+.navbar {
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+}
+.navbar a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
 
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 120px 20px 60px;
+}
 .profile-img {
-  width: 160px;
-  border-radius: 50%;
-  transition: 0.4s;
+    width: 150px;
+    border-radius: 50%;
+    border: 3px solid cyan;
 }
-.profile-img:hover { transform: scale(1.1); }
+.hero h1 { font-size: 40px; }
 
-.progress {
-  height: 8px;
-  background: #ccc;
-  margin-bottom: 15px;
-}
-.progress-bar {
-  background: cyan;
+/* Sections */
+.section {
+    padding: 60px 10%;
 }
 
+/* Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 20px;
+}
+
+/* Cards */
 .card {
-  margin-top: 20px;
-  cursor: pointer;
-  transition: 0.3s;
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
 }
-.card:hover { transform: scale(1.05); }
-
-/* Modal */
-.modal-box {
-  display:none;
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.8);
-}
-.modal-content {
-  background:white;
-  color:black;
-  margin:10% auto;
-  padding:20px;
-  width:60%;
-}
-.close { float:right; cursor:pointer; }
-
-/* Button */
-.btn:hover { transform: scale(1.1); }
-
-/* Top button */
-#topBtn {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  display:none;
+.card:hover {
+    transform: translateY(-10px);
 }
 
-/* Dark mode */
-.dark { background:black; }
+/* Projects */
+.project {
+    border-left: 4px solid cyan;
+}
